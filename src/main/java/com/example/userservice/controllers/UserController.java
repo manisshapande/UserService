@@ -34,6 +34,9 @@ public class UserController {
     @GetMapping("/validate/{token}")
     public UserResponseDto validateUser(@PathVariable String token){
         User user = userService.validateToken(token);
+        if (user == null) {
+            return null;
+        }
         return UserResponseDto.fromUser(user);
 
     }
